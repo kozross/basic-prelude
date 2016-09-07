@@ -172,14 +172,13 @@ intercalate :: Monoid w => w -> [w] -> w
 intercalate xs xss = mconcat (Data.List.intersperse xs xss)
 
 
--- | Compute the sum of a finite list of numbers.
-sum :: Num a => [a] -> a
-sum = Data.Foldable.foldl' (+) 0
+-- | Compute the sum of a finite Foldable of numbers.
+sum :: (Foldable t, Num a) => t a -> a
+sum = Data.Foldable.sum
 
--- | Compute the product of a finite list of numbers.
-product :: Num a => [a] -> a
-product = Data.Foldable.foldl' (*) 1
-
+-- | Compute the product of a finite Foldable of numbers.
+product :: (Foldable t, Num a) => t a -> a
+product = Data.Foldable.product
 
 -- | Convert a value to readable Text
 --
